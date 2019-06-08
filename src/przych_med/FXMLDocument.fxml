@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przych_med.FXMLDocumentController">
+   <children>
+      <TabPane layoutX="-3.0" layoutY="-6.0" prefHeight="481.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Lekarze">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableviewlekarze" prefHeight="233.0" prefWidth="676.0">
+                           <columns>
+                              <TableColumn fx:id="lekarze_imie" prefWidth="75.0" text="Imie" />
+                              <TableColumn fx:id="lekarze_nazwisko" prefWidth="75.0" text="Nazwisko" />
+                              <TableColumn fx:id="lekarze_pesel" prefWidth="81.0" text="Pesel" />
+                              <TableColumn fx:id="lekarze_nr_tel" prefWidth="83.0" text="Nr telefonu" />
+                              <TableColumn fx:id="lekarze_nr_gabinetu" prefWidth="87.0" text="Nr gabinetu" />
+                              <TableColumn fx:id="lekarze_data_zat" prefWidth="115.0" text="Data zatrudnienia" />
+                              <TableColumn fx:id="lekarze_wynagrodzenie" minWidth="7.0" prefWidth="79.0" text="Wypłata" />
+                           </columns></TableView>
+                        <TextField fx:id="tf_lekarz_imie" layoutX="14.0" layoutY="280.0" promptText="Imie" />
+                        <TextField fx:id="tf_lekarz_nazwisko" layoutX="186.0" layoutY="280.0" promptText="Nazwisko" />
+                        <TextField fx:id="tf_lekarz_pesel" layoutX="367.0" layoutY="280.0" promptText="Pesel" />
+                        <TextField fx:id="tf_lekarz_nr_tel" layoutX="14.0" layoutY="319.0" promptText="Nr telefonu" />
+                        <TextField fx:id="tf_lekarz_nr_gabinetu" layoutX="186.0" layoutY="319.0" promptText="nr_gabinetu" />
+                        <TextField fx:id="tf_lekarz_wyplata" layoutX="361.0" layoutY="319.0" promptText="Wyplata" />
+                        <TextField fx:id="tf_lekarz_datazat" layoutX="14.0" layoutY="361.0" promptText="Data zatrudnienia" />
+                        <Button fx:id="add_lekarz" layoutX="204.0" layoutY="362.0" mnemonicParsing="false" text="Dodaj" />
+                        <Button fx:id="del_lekarz" layoutX="271.0" layoutY="362.0" mnemonicParsing="false" text="Usuń" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Wizyty">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="422.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Historia wizyt">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="676.0">
+                                       <children>
+                                          <TableView fx:id="tableviewwizyty" prefHeight="366.0" prefWidth="676.0">
+                                            <columns>
+                                                <TableColumn fx:id="wiz_data" prefWidth="75.0" text="C2" />
+                                              <TableColumn fx:id="wiz_imie_pac" prefWidth="75.0" text="C1" />
+                                              <TableColumn fx:id="wiz_nazwisko_pac" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_imie_lek" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_nazwisko_lek" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_objawy" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_data_nast" prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="Wizyty dzisiaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="676.0">
+                                       <children>
+                                          <TableView fx:id="tableviewwizyty1" prefHeight="366.0" prefWidth="676.0">
+                                             <columns>
+                                                <TableColumn fx:id="wiz_data1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_imie_pac1" prefWidth="75.0" text="C1" />
+                                                <TableColumn fx:id="wiz_nazwisko_pac1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_imie_lek1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_nazwisko_lek1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_objawy1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_data_nast1" prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Wizyty planowane">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="676.0">
+                                       <children>
+                                          <TableView fx:id="tableviewwizyty_przyszle" layoutX="2.0" prefHeight="363.0" prefWidth="676.0">
+                                            <columns>
+                                              <TableColumn fx:id="wiz_data_przyszle" prefWidth="75.0" text="C1" />
+                                              <TableColumn fx:id="wiz_imie_pac_przyszle" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_nazwisko_pac_przyszle" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_imie__przyszle" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_nazwisko__przyszle" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_objawy_przyszle" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_data_nast_przyszle" prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children></AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Dodaj wizyte">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField fx:id="add_wiz_data" layoutX="14.0" layoutY="22.0" promptText="rrrr/mm/dd" />
+                                          <TextField fx:id="add_wiz_objawy" layoutX="19.0" layoutY="73.0" prefHeight="26.0" prefWidth="541.0" />
+                                          <Button fx:id="add_wiz" layoutX="423.0" layoutY="120.0" mnemonicParsing="false" text="Dodaj" />
+                                          <ChoiceBox fx:id="add_wiz_lek" layoutX="15.0" layoutY="124.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="add_wiz_pac" layoutX="215.0" layoutY="124.0" prefWidth="150.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab text="Szczegóły wizyty">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ChoiceBox fx:id="choicebox_wiz" layoutX="25.0" layoutY="36.0" prefWidth="150.0" />
+                                          <ListView fx:id="view_wiz_det" layoutX="25.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
