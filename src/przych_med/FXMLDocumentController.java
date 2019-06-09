@@ -5,9 +5,12 @@
  */
 package przych_med;
 
+import DAO.CHO_WIZ_DAO;
 import DAO.Lekarze_DAO;
 import DAO.Pacjenci_DAO;
 import DAO.Wizyty_DAO;
+import Models.Cho_Wiz;
+import Models.Choroby;
 
 import Models.Lekarze;
 import Models.Pacjenci;
@@ -140,10 +143,11 @@ public class FXMLDocumentController implements Initializable {
 
     private final Lekarze_DAO le_DAO = new Lekarze_DAO();
     private final Pacjenci_DAO pac_DAO = new Pacjenci_DAO();
-
+    public  int kwerenda;
     private final Wizyty_DAO wiz_prze = new Wizyty_DAO();
     private final Wizyty_DAO wiz_obec = new Wizyty_DAO();
     private final Wizyty_DAO wiz_przyszle = new Wizyty_DAO();
+    private final CHO_WIZ_DAO cho_wiz = new CHO_WIZ_DAO();
     @FXML
     private TextField add_wiz_data;
     @FXML
@@ -157,11 +161,23 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ChoiceBox<Wizyty> choicebox_wiz;
     @FXML
-    private ListView<Wizyty> view_wiz_det;
+    private ListView<Cho_Wiz> view_wiz_det;
+    @FXML
+    private Button view_all_detals;
+
+    public void show_chowiz() throws SQLException, ParseException {
+        
+        kwerenda = choicebox_wiz.getSelectionModel().getSelectedItem().getId_wizyty();
+
+        System.out.println(kwerenda);
+
+        view_wiz_det.setItems(FXCollections.observableArrayList(cho_wiz.getchoroby(kwerenda)));
+
+    }
 
     public void add_wiz() throws SQLException, ParseException {
         Wizyty wizyta = new Wizyty();
-        Lekarze lekarz= new Lekarze();
+        Lekarze lekarz = new Lekarze();
         Pacjenci pacjent = new Pacjenci();
         wizyta.setObjawy(add_wiz_objawy.getText());
         lekarz = add_wiz_lek.getSelectionModel().getSelectedItem();
@@ -172,7 +188,7 @@ public class FXMLDocumentController implements Initializable {
         java.util.Date invoiceDate = formatDate.parse(add_wiz_data.getText());
         java.sql.Date sqlDate2 = new java.sql.Date(invoiceDate.getTime());
         wizyta.setData_wizyty(sqlDate2);
-        
+
         Wizyty_DAO.create(wizyta);
         System.out.println(wizyta);
     }
@@ -259,6 +275,14 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        // try {
+        // view_wiz_det.setItems(FXCollections.observableArrayList(cho_wiz.get_choroby()));
+        //} catch (SQLException ex) {
+        //    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        // } catch (ParseException ex) {
+        //     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        // }
         try {
             choicebox_wiz.setItems(FXCollections.observableArrayList(wiz_prze.getAll()));
         } catch (SQLException ex) {
@@ -266,7 +290,7 @@ public class FXMLDocumentController implements Initializable {
         } catch (ParseException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             add_wiz_lek.setItems(FXCollections.observableArrayList(le_DAO.getAll()));
         } catch (SQLException ex) {
@@ -302,6 +326,15 @@ public class FXMLDocumentController implements Initializable {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        });
+        view_all_detals.setOnAction((ActionEvent event) -> {
+            try {
+                show_chowiz();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         add_lekarz.setOnAction((ActionEvent event) -> {
 

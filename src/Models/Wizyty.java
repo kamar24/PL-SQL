@@ -29,10 +29,7 @@ public class Wizyty  {
     
     public Pacjenci pacjenci;
 
-    @Override
-    public String toString() {
-        return data_wizyty + ", lekarz: "+lekarze.getImie()+ lekarze.getNazwisko() + ", pacjent: "+pacjenci.getImie()+pacjenci.getNazwisko();
-    }
+  
 
    
 
@@ -94,7 +91,10 @@ public class Wizyty  {
         this.pacjenci = pacjenci;
     }
 
-   
+     @Override
+    public String toString() {
+        return data_wizyty + ", lekarz: "+lekarze.getImie()+" "+ lekarze.getNazwisko() + ", pacjent: "+pacjenci.getImie()+" "+pacjenci.getNazwisko()+ id_wizyty;
+    }
 
    
     

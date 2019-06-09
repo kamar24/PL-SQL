@@ -124,6 +124,7 @@ public class Wizyty_DAO {
 
         while (rs.next()) {
             Wizyty wizyta = new Wizyty();
+            int id_wizyty =rs.getInt("id_wizyty");
             String objawy = rs.getString("objawy");
             Date nast_wizyta = rs.getDate("nast_wizyta");
             Date data_wizyty = rs.getDate("data_wizyty");
@@ -139,7 +140,8 @@ public class Wizyty_DAO {
             String nazwisko = rs.getString("naz_lek");
             lekarz.setImie(imie);
             lekarz.setNazwisko(nazwisko);
-
+            
+            wizyta.setId_wizyty(id_wizyty);
             wizyta.setObjawy(objawy);
             wizyta.setData_wizyty(data_wizyty);
             wizyta.setNast_wizyta(nast_wizyta);

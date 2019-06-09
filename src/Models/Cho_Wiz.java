@@ -11,30 +11,54 @@ package Models;
  */
 public class Cho_Wiz {
     
-    private int id_choroby;
-    private int id_wizyty;
+    public Wizyty wizyta;
+    public Choroby choroba;
 
-    public Cho_Wiz(int id_choroby, int id_wizyty) {
-        this.id_choroby = id_choroby;
-        this.id_wizyty = id_wizyty;
+    public Cho_Wiz(Wizyty wizyta, Choroby choroba) {
+        this.wizyta = wizyta;
+        this.choroba = choroba;
+    }
+    public Cho_Wiz(){}
+    
+
+    public Wizyty getWizyta() {
+        return wizyta;
+    }
+
+    public void setWizyta(Wizyty wizyta) {
+        this.wizyta = wizyta;
+    }
+
+    public Choroby getChoroba() {
+        return choroba;
+    }
+
+    public void setChoroba(Choroby choroba) {
+        this.choroba = choroba;
+    }
+
+    @Override
+    public String toString() {
+        return  choroba.getNazwa();
     }
     
-    public Cho_Wiz(){};
+    
+    
+    
 
-    public int getId_choroby() {
-        return id_choroby;
-    }
+  
+  
 
-    public void setId_choroby(int id_choroby) {
-        this.id_choroby = id_choroby;
-    }
+   
 
-    public int getId_wizyty() {
-        return id_wizyty;
-    }
+    
 
-    public void setId_wizyty(int id_wizyty) {
-        this.id_wizyty = id_wizyty;
-    }
+    
+
+    
+    
+
+  
+    
     
 }
