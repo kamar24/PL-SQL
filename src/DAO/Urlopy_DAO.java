@@ -10,6 +10,7 @@ import Models.Urlopy;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -30,24 +31,25 @@ public class Urlopy_DAO {
 
         while (rs.next()) {
             Urlopy urlop= new Urlopy();
-            int id_urlopu = rs.getInt("id_urlopu");
-            String data_pocz = rs.getString("data_pocz");
-            String data_kon = rs.getString("data_kon");
+            Lekarze lekarz= new Lekarze();
+            String imie_lek=rs.getString("imie");
+            String nazwisko_lek=rs.getString("nazwisko");
+           int id_urlopu = rs.getInt("id_urlopu");
+            Date data_pocz=rs.getDate("data_pocz");
+            Date data_konc=rs.getDate("data_konc");
             
-            Lekarze lekarz = new Lekarze();
-            int id_lekarza = rs.getInt("id_lekarza");
-            String imie = rs.getString("imie");
-            String nazwisko = rs.getString("nazwisko");
-            lekarz.setImie(imie);
-            lekarz.setNazwisko(nazwisko);
-
-            urlop.setId_urlopu(id_urlopu);
+            
+            lekarz.setImie(imie_lek);
+            lekarz.setNazwisko(nazwisko_lek);
+           
+           urlop.setId_urlopu(id_urlopu);
             urlop.setLekarze(lekarz);
-            urlop.setData_kon(data_kon);
             urlop.setData_pocz(data_pocz);
-
+            urlop.setData_konc(data_konc);
+            
             
             list.add(urlop);
+           
         
 
     }   return list;
@@ -60,18 +62,18 @@ public class Urlopy_DAO {
         CallableStatement stmt = null;
 
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call insertURLOPY(?,?,?,?)}");
+        stmt = con.prepareCall("{call insertURLOPY(?,?,?)}");
 
-        stmt.setInt(1, r.getId_urlopu());
-        stmt.setInt(2, r.lekarze.getId_lekarza());
-        stmt.setString(3, r.getData_kon());
-        stmt.setString(4, r.getData_pocz());
+        
+        stmt.setInt(1, r.lekarze.getId_lekarza());
+        stmt.setDate(2, r.getData_pocz());
+        stmt.setDate(3, r.getData_konc());
         
 
         stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(2, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
+       
+        stmt.registerOutParameter(2, java.sql.Types.DATE);
+        stmt.registerOutParameter(3, java.sql.Types.DATE);
      
 
         stmt.executeUpdate();
@@ -97,8 +99,8 @@ public class Urlopy_DAO {
         stmt = con.prepareCall("{call updateUrlopy(?,?,?,?)}");
         stmt.setInt(1, cz.getId_urlopu());
         stmt.setInt(2, cz.lekarze.getId_lekarza());
-        stmt.setString(4, cz.getData_kon());
-        stmt.setString(4, cz.getData_pocz());
+        stmt.setDate(4, cz.getData_konc());
+        stmt.setDate(4, cz.getData_pocz());
         
 
         stmt.registerOutParameter(1, java.sql.Types.INTEGER);

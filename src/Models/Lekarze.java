@@ -113,6 +113,8 @@ public class Lekarze {
          return  imie + " " + nazwisko + " " + pesel ;
     }
 
+  
+
     
  
    

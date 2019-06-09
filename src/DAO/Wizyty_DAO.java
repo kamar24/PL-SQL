@@ -36,13 +36,13 @@ public class Wizyty_DAO {
 
         while (rs.next()) {
             Wizyty wizyta = new Wizyty();
-
+            int id_wizyty=rs.getInt("id_wizyty");
             String objawy = rs.getString("objawy");
             Date nast_wizyta = rs.getDate("nast_wizyta");
             Date data_wizyty = rs.getDate("data_wizyty");
 
             Lekarze lekarz = new Lekarze();
-
+            
             String imiel = rs.getString("lek_im");
             String nazwiskol = rs.getString("lek_nazw");
             lekarz.setImie(imiel);
@@ -54,7 +54,7 @@ public class Wizyty_DAO {
             String nazwisko_pac = rs.getString("nazwisko");
             pacjent.setImie(imie_pac);
             pacjent.setNazwisko(nazwisko_pac);
-
+            wizyta.setId_wizyty(id_wizyty);
             wizyta.setObjawy(objawy);
             wizyta.setData_wizyty(data_wizyty);
             wizyta.setNast_wizyta(nast_wizyta);
@@ -80,7 +80,7 @@ public class Wizyty_DAO {
 
         while (rs.next()) {
             Wizyty wizyta = new Wizyty();
-
+            int id_wizyty=rs.getInt("Id_wizyty");
             String objawy = rs.getString("objawy");
             Date nast_wizyta = rs.getDate("nast_wizyta");
             Date data_wizyty = rs.getDate("data_wizyty");
@@ -98,7 +98,7 @@ public class Wizyty_DAO {
             String nazwisko_lek = rs.getString("lek_naz");
             lekarz.setImie(imie_lek);
             lekarz.setNazwisko(nazwisko_lek);
-
+            wizyta.setId_wizyty(id_wizyty);
             wizyta.setObjawy(objawy);
             wizyta.setData_wizyty(data_wizyty);
             wizyta.setNast_wizyta(nast_wizyta);
@@ -132,6 +132,7 @@ public class Wizyty_DAO {
             Pacjenci pacjent = new Pacjenci();
             String imie_pac = rs.getString("imie");
             String nazwisko_pac = rs.getString("nazwisko");
+            pacjent.setId_pacjenta(id_wizyty);
             pacjent.setImie(imie_pac);
             pacjent.setNazwisko(nazwisko_pac);
 
@@ -160,24 +161,23 @@ public class Wizyty_DAO {
         CallableStatement stmt = null;
 
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call insertWIZ(?,?,?,?)}");
+        stmt = con.prepareCall("{call insertWIZ(?,?,?)}");
 
         stmt.setInt(1, r.lekarze.getId_lekarza());
         stmt.setInt(2, r.pacjenci.getId_pacjenta());
         stmt.setDate(3, r.getData_wizyty());
-        stmt.setString(4, r.getObjawy());
+       
 
+        stmt.executeUpdate();
         
-        
-       stmt.executeUpdate();
-
+       
     }
 
     public static void delete(Wizyty cz) throws SQLException {
         Connection con = null;
         CallableStatement stmt = null;
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call deleteWizyty(?)}");
+        stmt = con.prepareCall("{call DELWIZ(?)}");
         stmt.setInt(1, cz.getId_wizyty());
 
         stmt.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -186,25 +186,25 @@ public class Wizyty_DAO {
 
     }
 
-    public static void update(Wizyty cz) throws SQLException {
+   public static void update(Wizyty  k) throws SQLException {
+
         Connection con = null;
         CallableStatement stmt = null;
+
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call updateUrlopy(?,?,?,?)}");
-        stmt.setInt(1, cz.getId_wizyty());
-        stmt.setInt(2, cz.lekarze.getId_lekarza());
-        stmt.setInt(3, cz.pacjenci.getId_pacjenta());
-        stmt.setDate(4, cz.getData_wizyty());
-        stmt.setString(5, cz.getObjawy());
-        stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(2, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(3, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(4, java.sql.Types.DATE);
-        stmt.registerOutParameter(5, java.sql.Types.VARCHAR);
+        stmt = con.prepareCall("{call UPDATEWIZYTAOBECNA(?,?,?)}");
+        stmt.setString(1, k.getObjawy());
+        stmt.setDate(2, k.getNast_wizyta());
+        stmt.setInt(3, k.getId_wizyty());
+       
         
 
-        stmt.executeUpdate();
-
+        stmt.registerOutParameter(1, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(2, java.sql.Types.DATE);
+        stmt.registerOutParameter(3, java.sql.Types.INTEGER);
+        
+    stmt.executeUpdate();
+        
     }
 
     public Wizyty_DAO() {

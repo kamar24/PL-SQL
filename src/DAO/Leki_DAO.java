@@ -33,11 +33,11 @@ public class Leki_DAO {
             Leki lek = new Leki();
             int id_leku = rs.getInt("id_leku");
             String nazwa = rs.getString("nazwa");
-            String refundacja = rs.getString("refundacja");
+            
             
             lek.setId_leku(id_leku);
             lek.setNazwa(nazwa);
-            lek.setRefundacja(refundacja);
+            
            
 
             list.add(lek);
@@ -65,12 +65,11 @@ public class Leki_DAO {
 
             int id_leku = rs.getInt("id_leku");
             String nazwa = rs.getString("nazwa");
-            String refundacja = rs.getString("refundacja");
-            
+                       
 
             lek.setId_leku(id_leku);
             lek.setNazwa(nazwa);
-            lek.setRefundacja(refundacja);
+            
             
 
             lista.add(lek);
@@ -85,9 +84,9 @@ public class Leki_DAO {
         CallableStatement stmt = null;
 
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call insertLEKI(?,?)}");
+        stmt = con.prepareCall("{call insertLEKI(?)}");
         stmt.setString(1, k.getNazwa());
-        stmt.setString(2, k.getRefundacja());
+      
         
 
         stmt.registerOutParameter(1, java.sql.Types.VARCHAR);
@@ -103,12 +102,12 @@ public class Leki_DAO {
         stmt = con.prepareCall("{call updateLEKI(?,?,?)}");
         stmt.setInt(1, k.getId_leku());
         stmt.setString(2, k.getNazwa());
-        stmt.setString(3, k.getRefundacja());
+        ;
         
 
         stmt.registerOutParameter(1, java.sql.Types.INTEGER);
         stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+        
         
         stmt.executeUpdate();
 

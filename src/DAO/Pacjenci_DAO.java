@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Models.Lekarze;
 import Models.Pacjenci;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -67,16 +68,16 @@ public class Pacjenci_DAO {
         CallableStatement stmt = null;
 
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call insertPACJENCI(?,?,?,?,?,?,?)}");
+        stmt = con.prepareCall("{call insertPACJENCI(?,?,?,?,?,?,?,?)}");
         stmt.setString(1, k.getImie());
         stmt.setString(2, k.getNazwisko());
         stmt.setString(3, k.getNr_tel());
-        stmt.setString(4, k.getKod_pocztowy());
-        stmt.setString(5, k.getMiasto());
-        stmt.setString(6, k.getPesel());
-        stmt.setString(7, k.getUbezpieczenie());
-        stmt.setString(8, k.getUlica());
-
+        stmt.setString(4, k.getPesel());
+        stmt.setString(5, k.getUlica());
+        stmt.setString(6, k.getKod_pocztowy());
+        stmt.setString(7, k.getMiasto());
+        stmt.setString(8, k.getUbezpieczenie());
+        
         stmt.registerOutParameter(1, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
@@ -93,29 +94,43 @@ public class Pacjenci_DAO {
         Connection con = null;
         CallableStatement stmt = null;
         con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call updateKLIENCI(?,?,?,?,?,?)}");
-        stmt.setInt(1, k.getId_pacjenta());
-        stmt.setString(2, k.getImie());
-        stmt.setString(3, k.getNazwisko());
-        stmt.setString(4, k.getNr_tel());
-        stmt.setString(5, k.getKod_pocztowy());
-        stmt.setString(5, k.getMiasto());
+         stmt = con.prepareCall("{call updatePacjenci(?,?,?,?,?,?,?,?,?)}");
+        stmt.setString(1, k.getImie());
+        stmt.setString(2, k.getNazwisko());
+        stmt.setString(3, k.getNr_tel());
+        stmt.setString(4, k.getPesel());
+        stmt.setString(5, k.getUlica());
+        stmt.setString(6, k.getKod_pocztowy());
+        stmt.setString(7, k.getMiasto());
+        stmt.setString(8, k.getUbezpieczenie());
+        stmt.setInt(9, k.getId_pacjenta());
         
-
-        stmt.registerOutParameter(1, java.sql.Types.INTEGER);
+        
+        stmt.registerOutParameter(1, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(5, java.sql.Types.VARCHAR);
         stmt.registerOutParameter(6, java.sql.Types.VARCHAR);
-        
-        stmt.executeUpdate();
+        stmt.registerOutParameter(7, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(8, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(9, java.sql.Types.INTEGER);
 
+        stmt.executeUpdate();
     }
     
     public Pacjenci_DAO() {
 
     }
-
-}
+     public static void delete(Pacjenci cz) throws SQLException {
+        Connection con = null;
+        CallableStatement stmt = null;
+        con = JDBC_Connection.getConnections();
+        stmt = con.prepareCall("{call delPacjenci(?)}");
+        
+        stmt.setInt(1, cz.getId_pacjenta());
+       
+    
+       stmt.executeUpdate();
+}}
 

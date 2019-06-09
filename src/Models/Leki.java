@@ -19,12 +19,12 @@ public class Leki {
     
     private String nazwa;
     
-    private String refundacja;
+   
 
-    public Leki(int id_leku, String nazwa, String refundacja) {
+    public Leki(int id_leku, String nazwa) {
         this.id_leku = id_leku;
         this.nazwa = nazwa;
-        this.refundacja = refundacja;
+       
     }
     
     public Leki(){}
@@ -45,13 +45,6 @@ public class Leki {
         this.nazwa = nazwa;
     }
 
-    public String getRefundacja() {
-        return refundacja;
-    }
-
-    public void setRefundacja(String refundacja) {
-        this.refundacja = refundacja;
-    }
-
+  
    
 }

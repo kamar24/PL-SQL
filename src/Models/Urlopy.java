@@ -1,5 +1,7 @@
 package Models;
 
+import java.sql.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,22 +17,22 @@ public class Urlopy {
     private int id_urlopu;
       
    
-    private String data_pocz;
+    private Date data_pocz;
     
  
-    private String data_kon;
+    private Date data_konc;
     
        
     public Lekarze lekarze;
 
-    public Urlopy(int id_urlopu, String data_pocz, String data_kon, Lekarze lekarze) {
+    public Urlopy(int id_urlopu, Date data_pocz, Date data_konc, Lekarze lekarze) {
         this.id_urlopu = id_urlopu;
         this.data_pocz = data_pocz;
-        this.data_kon = data_kon;
+        this.data_konc = data_konc;
         this.lekarze = lekarze;
     }
 
-   public Urlopy (){}
+    public Urlopy(){}
 
     public int getId_urlopu() {
         return id_urlopu;
@@ -40,20 +42,20 @@ public class Urlopy {
         this.id_urlopu = id_urlopu;
     }
 
-    public String getData_pocz() {
+    public Date getData_pocz() {
         return data_pocz;
     }
 
-    public void setData_pocz(String data_pocz) {
+    public void setData_pocz(Date data_pocz) {
         this.data_pocz = data_pocz;
     }
 
-    public String getData_kon() {
-        return data_kon;
+    public Date getData_konc() {
+        return data_konc;
     }
 
-    public void setData_kon(String data_kon) {
-        this.data_kon = data_kon;
+    public void setData_konc(Date data_konc) {
+        this.data_konc = data_konc;
     }
 
     public Lekarze getLekarze() {
@@ -63,6 +65,13 @@ public class Urlopy {
     public void setLekarze(Lekarze lekarze) {
         this.lekarze = lekarze;
     }
+
+    @Override
+    public String toString() {
+        return "Urlopy{" + "id_urlopu=" + id_urlopu + ", data_pocz=" + data_pocz + ", data_konc=" + data_konc + ", lekarze=" + lekarze + '}';
+    }
+
+   
    
    
     

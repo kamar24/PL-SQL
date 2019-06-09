@@ -33,16 +33,13 @@ public class Specjalizacje_DAO {
         while (rs.next()) {
             Specjalizacje specjalizacja= new Specjalizacje();
             int id_specjalizacji = rs.getInt("id_specjalizacji");
-            String nazwa = rs.getString("nazwa");
+            String nazwa = rs.getString("spec");
             
             Oddzialy oddzial=new Oddzialy();
-            int id_oddzialu=rs.getInt("id_oddzialu");
-            
-            
-            oddzial.setId_oddzialu(id_oddzialu);
-            
-
-            specjalizacja.setId_specjalizacji(id_specjalizacji);
+                        
+            oddzial.setNazwa(rs.getString("nazwa"));
+          
+           specjalizacja.setId_specjalizacji(id_specjalizacji);
             specjalizacja.setNazwa(nazwa);
             specjalizacja.setOddzialy(oddzial);
 

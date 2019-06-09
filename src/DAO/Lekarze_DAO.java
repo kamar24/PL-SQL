@@ -127,6 +127,36 @@ public class Lekarze_DAO {
     stmt.executeUpdate();
         
     }
+    public static void update(Lekarze  k) throws SQLException {
+
+        Connection con = null;
+        CallableStatement stmt = null;
+
+        con = JDBC_Connection.getConnections();
+        stmt = con.prepareCall("{call UPDATELEKARZ(?,?,?,?,?,?,?,?)}");
+        stmt.setString(1, k.getImie());
+        stmt.setString(2, k.getNazwisko());
+        stmt.setString(3, k.getNr_tel());
+        stmt.setInt(4, k.getWynagrodzenie());
+        stmt.setString(5, k.getPesel());
+        stmt.setInt(6, k.getNr_gabinetu());
+        stmt.setDate(7, k.getData_zat());
+        stmt.setInt(8, k.getId_lekarza());
+        
+
+        stmt.registerOutParameter(1, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(4, java.sql.Types.INTEGER);
+        
+        stmt.registerOutParameter(5, java.sql.Types.VARCHAR);
+        stmt.registerOutParameter(6, java.sql.Types.INTEGER);
+        stmt.registerOutParameter(7, java.sql.Types.DATE);
+        stmt.registerOutParameter(8, java.sql.Types.INTEGER);
+        
+    stmt.executeUpdate();
+        
+    }
     
      public static void delete(Lekarze cz) throws SQLException {
         Connection con = null;
@@ -136,7 +166,7 @@ public class Lekarze_DAO {
         
         stmt.setInt(1, cz.getId_lekarza());
        
-      // stmt.registerOutParameter(1, java.sql.Types.INTEGER);
+     
        stmt.executeUpdate();
       
 
@@ -144,30 +174,7 @@ public class Lekarze_DAO {
 
     }
 
-    public static void update(Lekarze k) throws SQLException {
-        Connection con = null;
-        CallableStatement stmt = null;
-        con = JDBC_Connection.getConnections();
-        stmt = con.prepareCall("{call updateKLIENCI(?,?,?,?,?,?)}");
-        
-        stmt.setInt(1, k.getId_lekarza());
-        stmt.setString(2, k.getImie());
-        stmt.setString(3, k.getNazwisko());
-        stmt.setString(4, k.getNr_tel());
-        stmt.setInt(5, k.getWynagrodzenie());
-        stmt.setInt(6, k.getNr_gabinetu());
-        
-
-        stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-        stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(5, java.sql.Types.VARCHAR);
-        stmt.registerOutParameter(6, java.sql.Types.VARCHAR);
-        
-        stmt.executeUpdate();
-
-    }
+  
     
     public Lekarze_DAO() {
 

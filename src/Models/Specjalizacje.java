@@ -57,17 +57,16 @@ public class Specjalizacje {
     public void setOddzialy(Oddzialy oddzialy) {
         this.oddzialy = oddzialy;
     }
+
+    @Override
+    public String toString() {
+        return "Specjalizacje: " + nazwa + ", oddzialy: " + oddzialy.getNazwa();
+    }
    
    
     
     
 
-    
-        
-    
-    
-    
-    
    
     
     
