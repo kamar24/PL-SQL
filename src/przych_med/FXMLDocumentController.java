@@ -6,17 +6,21 @@
 package przych_med;
 
 import DAO.CHO_WIZ_DAO;
+import DAO.Choroby_DAO;
 import DAO.Lek_Spec_DAO;
 import DAO.Lek_Wiz_DAO;
 import DAO.Lekarze_DAO;
+import DAO.Leki_DAO;
 import DAO.Pacjenci_DAO;
 import DAO.Specjalizacje_DAO;
 import DAO.Urlopy_DAO;
 import DAO.Wizyty_DAO;
 import Models.Cho_Wiz;
+import Models.Choroby;
 import Models.Lek_Spec;
 import Models.Lek_Wiz;
 import Models.Lekarze;
+import Models.Leki;
 import Models.Pacjenci;
 import Models.Specjalizacje;
 import Models.Urlopy;
@@ -155,6 +159,8 @@ public class FXMLDocumentController implements Initializable {
     private final Lek_Spec_DAO lek_spec = new Lek_Spec_DAO();
     private final Pacjenci_DAO pac = new Pacjenci_DAO();
     private final Urlopy_DAO urlopy = new Urlopy_DAO();
+    private final Choroby_DAO choroby=new Choroby_DAO();
+    private final Leki_DAO leki=new Leki_DAO();
     @FXML
     private TextField add_wiz_data;
     @FXML
@@ -257,6 +263,40 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button update_pacjenci;
     public int id_pacjenta;
+    @FXML
+    private ChoiceBox<Choroby> choice_box_choroby;
+    
+    @FXML
+    private ChoiceBox<Leki> choice_box_leki;
+    @FXML
+    private Button add_lek_chor;
+    int id_wiz;
+    int id_cho;
+    int id_lek;
+    public void addwiz_cho()throws SQLException, ParseException{
+        Choroby choroba=new Choroby();
+        Cho_Wiz chowiz=new Cho_Wiz();
+                
+        choroba=choice_box_choroby.getSelectionModel().getSelectedItem();
+        id_cho=choroba.getId_choroby();
+        choroba.setId_choroby(id_wiz);
+        chowiz.setChoroba(choroba);
+       
+        
+        
+    
+    }
+    public void add_wiz_lek()throws SQLException, ParseException{
+        Wizyty wizyta= new Wizyty();
+        wizyta=choicebox_wiz.getSelectionModel().getSelectedItem();
+        id_wiz=wizyta.getId_wizyty();
+        wizyta.setId_wizyty(id_wiz);
+       
+        
+        
+    
+    }
+    
     
     public void update_pacjenci()throws SQLException, ParseException{
     Pacjenci pacjent= new Pacjenci();
@@ -539,6 +579,18 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            choice_box_leki.setItems(FXCollections.observableArrayList(leki.getAll()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            choice_box_choroby.setItems(FXCollections.observableArrayList(choroby.getAll()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         update_pacjenci.setOnAction((ActionEvent event)->{
             try {
                 update_pacjenci();

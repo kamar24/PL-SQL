@@ -44,7 +44,7 @@ public class Choroby {
 
     @Override
     public String toString() {
-        return "Choroby{" + "nazwa=" + nazwa + '}';
+        return nazwa;
     }
     
     

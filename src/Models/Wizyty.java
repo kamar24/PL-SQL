@@ -93,7 +93,7 @@ public class Wizyty  {
 
     @Override
     public String toString() {
-        return  data_wizyty +  " Pacjent :" + pacjenci.getImie() +" "+pacjenci.getNazwisko()+" "+ lekarze.getImie()+ " " + lekarze.getImie();
+        return  data_wizyty +  " Pacjent :" + pacjenci.getImie() +" "+pacjenci.getNazwisko()+" "+ lekarze.getImie()+ " " + lekarze.getNazwisko();
     }
 
     

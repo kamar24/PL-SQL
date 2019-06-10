@@ -49,5 +49,21 @@ public class Lek_Wiz_DAO {
         return getLeki;
 
     }
+ public static void create(Lek_Wiz r) throws SQLException {
 
+        Connection con = null;
+        CallableStatement stmt = null;
+
+        con = JDBC_Connection.getConnections();
+        stmt = con.prepareCall("{call insertWIZ(?,?)}");
+        
+       // stmt.setInt(1, r.getLek());
+
+        stmt.registerOutParameter(1, java.sql.Types.INTEGER);
+       
+
+        stmt.executeUpdate();
+        
+       
+    }
 }

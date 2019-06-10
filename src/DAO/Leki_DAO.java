@@ -24,7 +24,7 @@ public class Leki_DAO {
         CallableStatement stmt = null;
         List<Leki> list = new ArrayList<Leki>();
         con = JDBC_Connection.getConnections();
-        CallableStatement statement = con.prepareCall("{call GETLEKI(?)}");
+        CallableStatement statement = con.prepareCall("{call GETLEK(?)}");
         statement.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
         statement.execute();
         ResultSet rs = (ResultSet) statement.getObject(1);

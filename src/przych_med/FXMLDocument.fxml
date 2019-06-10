@@ -95,21 +95,22 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="676.0">
                                        <children>
-                                          <TableView fx:id="tableviewwizyty1" prefHeight="257.0" prefWidth="676.0">
+                                          <TableView fx:id="tableviewwizyty1" prefHeight="162.0" prefWidth="676.0">
                                              <columns>
-                                                <TableColumn fx:id="wiz_data1" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_imie_pac1" prefWidth="75.0" text="C1" />
-                                                <TableColumn fx:id="wiz_nazwisko_pac1" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_imie_lek1" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_nazwisko_lek1" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_objawy1" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_data_nast1" prefWidth="75.0" text="C2" />
+                                                <TableColumn fx:id="wiz_data1" prefWidth="75.0" text="Data wizyty" />
+                                                <TableColumn fx:id="wiz_imie_pac1" prefWidth="88.0" text="Imie pacjenta" />
+                                                <TableColumn fx:id="wiz_nazwisko_pac1" prefWidth="112.0" text="Nazwisko pacjenta" />
+                                                <TableColumn fx:id="wiz_imie_lek1" text="Imie lekarza" />
+                                                <TableColumn fx:id="wiz_nazwisko_lek1" prefWidth="108.0" text="Nazwisko lekarza" />
+                                                <TableColumn fx:id="wiz_objawy1" prefWidth="119.0" text="Objawy" />
+                                                <TableColumn fx:id="wiz_data_nast1" prefWidth="93.0" text="Nast. wizyta" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="edit_wiz" layoutX="338.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Modyfikuj" />
-                                          <Button fx:id="update_wiz" layoutX="253.0" layoutY="336.0" mnemonicParsing="false" text="Aktualizuj" />
-                                          <TextField fx:id="edit_objawy_wizyta" layoutX="189.0" layoutY="275.0" prefHeight="25.0" prefWidth="460.0" />
-                                          <TextField fx:id="edit_wiz_obec_data" layoutX="14.0" layoutY="275.0" />
+                                          <Button fx:id="edit_wiz" layoutX="95.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Modyfikuj" />
+                                          <Button fx:id="update_wiz" layoutX="14.0" layoutY="207.0" mnemonicParsing="false" text="Aktualizuj" />
+                                          <TextField fx:id="edit_objawy_wizyta" layoutX="14.0" layoutY="172.0" prefHeight="25.0" prefWidth="460.0" />
+                                          <TextField fx:id="edit_wiz_obec_data" layoutX="485.0" layoutY="172.0" />
+                                          <ChoiceBox fx:id="choice_box_add_choroba" layoutX="14.0" layoutY="247.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -121,12 +122,12 @@
                                           <TableView fx:id="tableviewwizyty_przyszle" layoutX="2.0" prefHeight="308.0" prefWidth="676.0">
                                             <columns>
                                               <TableColumn fx:id="wiz_data_przyszle" prefWidth="75.0" text="Data wizyty" />
-                                              <TableColumn fx:id="wiz_imie_pac_przyszle" prefWidth="75.0" text="Imie pacjenta" />
-                                                <TableColumn fx:id="wiz_nazwisko_pac_przyszle" prefWidth="75.0" text="Nazwisko pacjenta" />
-                                                <TableColumn fx:id="wiz_imie__przyszle" prefWidth="75.0" text="Imie lekarza" />
-                                                <TableColumn fx:id="wiz_nazwisko__przyszle" prefWidth="75.0" text="Nazwisko lekarza" />
-                                                <TableColumn fx:id="wiz_objawy_przyszle" prefWidth="75.0" text="C2" />
-                                                <TableColumn fx:id="wiz_data_nast_przyszle" prefWidth="75.0" text="C2" />
+                                              <TableColumn fx:id="wiz_imie_pac_przyszle" prefWidth="96.0" text="Imie pacjenta" />
+                                                <TableColumn fx:id="wiz_nazwisko_pac_przyszle" prefWidth="112.0" text="Nazwisko pacjenta" />
+                                                <TableColumn fx:id="wiz_imie__przyszle" prefWidth="86.0" text="Imie lekarza" />
+                                                <TableColumn fx:id="wiz_nazwisko__przyszle" prefWidth="102.0" text="Nazwisko lekarza" />
+                                                <TableColumn fx:id="wiz_objawy_przyszle" prefWidth="116.0" text="Objawy" />
+                                                <TableColumn fx:id="wiz_data_nast_przyszle" prefWidth="88.0" text="Nast. wizyta" />
                                             </columns>
                                           </TableView>
                                           <Button fx:id="del_wiz" layoutX="63.0" layoutY="342.0" mnemonicParsing="false" text="Usuń" />
@@ -150,9 +151,12 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <ChoiceBox fx:id="choicebox_wiz" layoutX="25.0" layoutY="36.0" prefHeight="25.0" prefWidth="557.0" />
-                                          <ListView fx:id="view_wiz_det" layoutX="25.0" layoutY="167.0" prefHeight="200.0" prefWidth="200.0" />
+                                          <ListView fx:id="view_wiz_det" layoutX="25.0" layoutY="167.0" prefHeight="200.0" prefWidth="105.0" />
                                           <Button fx:id="view_all_detals" layoutX="25.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Wczytaj szczegóły" />
-                                          <ListView fx:id="view_wiz_lek_det" layoutX="238.0" layoutY="167.0" prefHeight="200.0" prefWidth="200.0" />
+                                          <ListView fx:id="view_wiz_lek_det" layoutX="130.0" layoutY="167.0" prefHeight="200.0" prefWidth="110.0" />
+                                          <ChoiceBox fx:id="choice_box_choroby" layoutX="229.0" layoutY="85.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="choice_box_leki" layoutX="423.0" layoutY="85.0" prefWidth="150.0" />
+                                          <Button fx:id="add_lek_chor" layoutX="353.0" layoutY="125.0" mnemonicParsing="false" text="Dodaj chorobe i lek" />
                                        </children>
                                     </AnchorPane>
                                 </content>

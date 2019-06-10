@@ -45,6 +45,11 @@ public class Leki {
         this.nazwa = nazwa;
     }
 
+    @Override
+    public String toString() {
+        return  nazwa ;
+    }
+
   
    
 }
